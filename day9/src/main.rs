@@ -25,6 +25,7 @@ fn main() {
     for perm in locations.iter().permutations(locations.len()).unique() {
         let perm2: Vec<String> = perm.iter().map(|s| s.to_string()).collect();
         let dist = calculate_distance(perm, &routes);
+        
         if shortest.distance.is_none() || dist < shortest.distance.unwrap() {
             shortest.distance = Some(dist);
             shortest.route = Some(perm2.clone());
@@ -99,5 +100,6 @@ fn calculate_distance(order: Vec<&String>, hash: &HashMap<(String, String), i32>
 
         dist += hash.get(&loc).unwrap();
     }
+
     dist
 }
